@@ -1,107 +1,59 @@
 // ------------------- 8 ---------------
 // Запрашивать у пользователя имена студентов и возраст, если возраст больше 18, то добавлять его в массив let milashki_JS29 = [], а иначе добавлять в массив let vseOstalnye = [], делать проверку есть ли такой студентов в списке, если есть то не добавлять
 
-// let milashki_JS29 = [];
-// let vseOstalnye = [];
+let milashki_JS29 = [];
+let vseOstalnye = [];
 
-// while(true) {
-//     let unique = true;
+while (true) {
+let studentName = prompt("Введите имя студента:");
+if (studentName === null) {
+break;
+}
+let studentAge = Number(prompt("Введите возраст студента:"));
+if (studentAge === null) {
+break;
+}
 
-//     let userName = prompt('Enter your name');
-//     let userAge = +prompt('Enter your age');
+if (studentAge > 18) {
+if (!milashki_JS29.includes(studentName)) {
+milashki_JS29.push(studentName);
+}
+} else {
+if (!vseOstalnye.includes(studentName)) {
+vseOstalnye.push(studentName);
+}
+}
+}
 
-//     for (let i = 0; i < milashki_JS29.length; i++){
-//         if(userName == milashki_JS29[i].userName && userAge == milashki_JS29[i].userAge){
-//             alert('Такой студент уже есть')
-//             unique = false
-//         }
-//     }
-
-//     if(!unique) continue;
-
-//     for (let i = 0; i < vseOstalnye.length; i++){
-//         if(userName == vseOstalnye[i].userName && userAge == vseOstalnye[i].userAge){
-//             alert('Такой студент уже есть')
-//             unique = false
-//         }
-//     }
-    
-//     if(!unique) continue;
-    
-//     if(userAge > 18) {
-//         milashki_JS29.push({
-//             userName,
-//             userAge
-//         })
-
-//     } else {
-//         vseOstalnye.push({
-//             userName,
-//             userAge
-//         })
-//     }
-
-//     let ask = confirm('Добавить еще?');
-//     if (!ask) break;
-// }
-
-// console.log(milashki_JS29, vseOstalnye);
-
-
-// ------------ 2 вариант ---------------------
-// let milashki_JS29 = [];
-// let vseOstalnye = [];
-
-// while (true) {
-// let studentName = prompt("Введите имя студента:");
-// if (studentName === null) {
-// break;
-// }
-// let studentAge = Number(prompt("Введите возраст студента:"));
-// if (studentAge === null) {
-// break;
-// }
-
-// if (studentAge > 18) {
-// if (!milashki_JS29.includes(studentName)) {
-// milashki_JS29.push(studentName);
-// }
-// } else {
-// if (!vseOstalnye.includes(studentName)) {
-// vseOstalnye.push(studentName);
-// }
-// }
-// }
-
-// console.log(milashki_JS29);
-// console.log(vseOstalnye);
+console.log(milashki_JS29);
+console.log(vseOstalnye);
 
 // --------------------- 9 ---------------
 // Запрашивать у пользователя имена , пока он не решит остановиться, все имена положить в массив. Нужно разбить их по парам в (в случайном порядке). Если не четное количество имен, последнего человека без пары засунуть в пару с текстом - 'без пары'; В консоли вывести вложенный массив, где внутренний массив будет одной парой; example [['Sultan', 'Ilya'], ['Tom', 'Jerry'], ['Howard', 'без пары']
 
-// let names = [];
+let names = [];
 
-// while (true) {
-//   const name = prompt("Введите имя: ");
-//   if (!name) {
-//     break;
-//   }
-//   names.push(name);
-// }
+while (true) {
+  const name = prompt("Введите имя: ");
+  if (!name) {
+    break;
+  }
+  names.push(name);
+}
 
-// names.sort(() => Math.random() - 0.5);
+names.sort(() => Math.random() - 0.5);
 
-// let pairs = [];
+let pairs = [];
 
-// for (let i = 0; i < names.length; i += 2) {
-//   if (i + 1 < names.length) {
-//     pairs.push([names[i], names[i + 1]]);
-//   } else {
-//     pairs.push([names[i], "без пары"]);
-//   }
-// }
+for (let i = 0; i < names.length; i += 2) {
+  if (i + 1 < names.length) {
+    pairs.push([names[i], names[i + 1]]);
+  } else {
+    pairs.push([names[i], "без пары"]);
+  }
+}
 
-// console.log(pairs);
+console.log(pairs);
 
 
 // ------------------- 10.1 ----------------
@@ -181,13 +133,6 @@ console.log(counts); // выведет объект, где ключ - это з
 
 // ---------------- 10.2 ---------------
 // Используя предыдущий массив добавить возможность ставить постам лайк, необходимо сначала добавить каждому посту ключ likes у которого значение массив
-
-let likes = [];
-let answ = confirm("Хотите ли вы поставить лайк посту?");
-let answId = +prompt("Введите ID поста, которому Вы хотите поставить лайк:");
-for (let obj of posts) {           //*Добавили likes[]
-    obj.likes = likes;
-}
 // ------------------ 10.3 --------------
 // Если пользователь захочет поставить лайк, то спросить у него айди поста, которому нужно поставить лайк, проверить есть ли такой пост, если есть, то запросить у пользователя имя и добавить в нужный пост лайк в формате объекта, 
 // примерный вид поста с объектом лайка: 
@@ -204,24 +149,35 @@ for (let obj of posts) {           //*Добавили likes[]
 //     ]
 // }
 
-let userName;
-for (let i of posts) {
-    if (i.Id == answId + 1) {
-        userName = prompt('Введите свое имя:');
-        i.likes = [{ name: userName, isLike: true }];
-        break;
-    }
-}
-
-console.log(posts);
-
 // ----------------- 10.4 -----------------
 // Добавить проверку на то, что пользователь уже ставил/не ставил лайк данному посту, после того как запросим у пользователя какому посту нужно поставить лайк, необходимо проверить возможно он уже ставил лайк, проверять нужно по имени, которое он введет, если он уже ставил лайк, то тогда нужно поменять значение у ключа isLike на false
 
-function check_like(username, post_id){
-
-  if (post_id in likes[username]){
-    return likes[username][post_id]
-  } else{
-    return False}
+for (let i = 0; i < posts.length; i++) {
+  posts[i].likes = [];
 }
+while (true) {
+  const postId = prompt("Введите айди поста, которому нужно поставить лайк:");
+  const name = prompt("Введите ваше имя:");
+  for (let i = 0; i < posts.length; i++) {
+      if (posts[i].id == postId) {
+          let isLiked = false;
+          for (let j = 0; j < posts[i].likes.length; j++) {
+              if (posts[i].likes[j].name == name) {
+                  isLiked = true;
+                  break;
+              }
+          }
+          if (!isLiked) {
+              posts[i].likes.push({ name: name, isLike: true });
+              alert("Лайк добавлен");
+          } else {
+              posts[i].likes = [{ name: name, isLike: false }];
+              alert("Вы уже ставили лайк этому посту");
+          }
+          break;
+      }
+  }
+  let conti = confirm('Продолжить ?');
+  if (!conti) break;
+}
+  console.log(posts)
